@@ -88,7 +88,6 @@ function startStop() {
     case 1:
       const T2 = logStop();
       const T1 = logFuse();
-      console.log( T1, T2)
       // update data
       updateAllData( T1, T2 );
       // reset state and button properties
