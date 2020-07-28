@@ -1,0 +1,42 @@
+header {
+  margin: 0px;
+  border: 0px;
+  background-color: LightBlue;
+}
+
+.player {
+  user-select: none;
+  list-style: none;
+  margin: 10px;
+  max-width: 200px;
+  border-color: DodgerBlue;
+  /*background-color: DodgerBlue;*/
+}
+
+.close {
+  margin: 0px;
+  margin-inline: 10px;
+}
+
+.cpick {
+  margin: 10px;
+  margin-inline: 10px;
+  height: 25px;
+  width: 40px;
+}
+
+.player {
+}
+
+.start-btn {
+  width: 50px;
+}
+.next-btn {
+  width: 50px;
+}
+.reset-btn {
+  width: 50px;
+}
+.export-btn {
+  width: 50px;
+}

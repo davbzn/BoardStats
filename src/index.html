@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>BoardStats</title>
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+    <script src="https://unpkg.com/chartjs-chart-box-and-violin-plot@2.3.0/build/Chart.BoxPlot.min.js"></script>
+    <script src="init.js"></script>
+    <!-- Add custom css style -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Add icon library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+  <body>
+     <header>
+        <div id="Title" class="title"><h1>Board Stats</h1></div>
+     </header>
+
+     <section>
+      <h2>Player List</h2>
+      <input type="text" id="new-player-name" placeholder="New Player Name">
+      <button onclick="newElement()" class="add-btn" title="Add">Add</button>
+     </section>
+
+    <ul id="player-list"></ul>
+    <script src="player-list.js"></script>
+
+    <div>
+      <button onclick="startStop()" class="start-btn" title="Start/Pause">
+        <i id="start-stop-icon" class="fa fa-play" aria-hidden="true"></i>
+      </button>
+      <button onclick="next()" class="next-btn" title="Next">
+        <i class="fa fa-step-forward" aria-hidden="true"></i>
+      </button>
+      <button onclick="reset()" class="reset-btn" title="Reset">
+        <i class="fa fa-refresh" aria-hidden="true"></i>
+      </button>
+      <button onclick="export()" class="export-btn" title="Export" disabled="true">
+        <i class="fa fa-download" aria-hidden="true"></i>
+      </button>
+    </div>
+    <div>
+        <canvas id="line-chart" width="330" height="330"></canvas>
+        <canvas id="pie-chart" width="330" height="330"></canvas>
+        <!--<canvas id="box-chart" width="330" height="300"></canvas>-->
+    </div>
+    <script src="line.js"></script>
+    <script src="pie.js"></script>
+    <!--<script src="box.js"></script>-->
+    <script src="logic.js"></script>
+    <script>
+      {
+        let text = document.getElementById( "new-player-name" );
+        text.value = "Player 1";
+        newElement();
+        text.value = "Player 2";
+        newElement();
+        text.value = "Player 3";
+        newElement();
+      }
+    </script>
+  </body>
+</html>
