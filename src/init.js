@@ -47,9 +47,10 @@ function logsToCSV( objArray ) {
     // create a csv table with "Player name", turn nr., start time,
     // stop time, and duration columns.
     var str = '';
-    str += "Player name, start time, stop time, duration\r\n"
+    str += "Player name, turn number, start time, stop time, duration\r\n"
     for (var i = 0; i < logs.length; i++) {
         var line = '"' + objArray[i].player + '", ';
+        line += objArray[i].turn + ", ";
         line += objArray[i].start.toISOString() + ", ";
         line += objArray[i].stop.toISOString() + ", ";
         line += objArray[i].duration;
