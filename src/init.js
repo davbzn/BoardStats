@@ -42,3 +42,39 @@ function nextPlayer() {
   }
   return false;
 }
+
+function logsToCSV( objArray ) {
+    // create a csv table with "Player name", turn nr., start time,
+    // stop time, and duration columns.
+    var str = '';
+    str += "Player name, start time, stop time, duration\r\n"
+    for (var i = 0; i < logs.length; i++) {
+        var line = '"' + objArray[i].player + '", ';
+        line += objArray[i].start.toISOString() + ", ";
+        line += objArray[i].stop.toISOString() + ", ";
+        line += objArray[i].duration;
+        str += line + '\r\n';
+    }
+    return str
+}
+
+function exportToCSV( ) {
+    var csv = logsToCSV( logs );
+
+    //var exportedFileName = fileTitle + '.csv' || 'export.csv';
+    var exportedFileName = 'export.csv';
+
+    var blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+
+    var link = document.createElement("a");
+    if (link.download !== undefined) { // feature detection
+        // Browsers that support HTML5 download attribute
+        var url = URL.createObjectURL(blob);
+        link.setAttribute("href", url);
+        link.setAttribute("download", exportedFileName);
+        link.style.visibility = 'hidden';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+}
