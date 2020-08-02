@@ -2,11 +2,6 @@ body {
   margin: 0;
 }
 
-body > * {
-  margin: 0;
-  padding: .8rem 1.8rem
-}
-
 h1 {
   margin: 0;
 }
@@ -17,18 +12,69 @@ header {
   background-color: LightBlue;
 }
 
+.toolbar  {
+  margin: 0;
+  padding: .8rem 1.8rem
+}
+
+/* The side menu containing the list of players */
+.sidenav {
+  height: 100%; /* 100% Full-height */
+  width: 0; /* 0 width - change this with JavaScript */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Stay on top */
+  top: 1; /* Stay at the top */
+  right: 0;
+  background-color: #111; /* Black*/
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 60px; /* Place content 60px from the top */
+  transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+}
+
+/* The content of the side navigation menu */
+.sidenav > * {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 20px;
+  color: #a1a1a1;
+  display: block;
+  transition: 0.3s;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidenav li:hover {
+  color: #f1f1f1;
+}
+
+/* Position and style the close button (top right corner) */
+.sidenav .sidenav-close-btn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+}
+
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
 .player {
   user-select: none;
   list-style: none;
-  margin: 10px;
-  max-width: 200px;
-  border-color: DodgerBlue;
-  /*background-color: DodgerBlue;*/
+  display: flex;
+  align-items: center;
+  padding: 5px;
 }
 
 .close {
   margin: 0px;
   margin-inline: 10px;
+  background: none;
+  border: none;
+  padding: none;
+  color: inherit;
 }
 
 .cpick {
@@ -40,10 +86,16 @@ header {
 
 .color-picker-wrapper {
   float: left;
+  border: 3px solid;
   border-radius: 50%;
-  width: 20px;
-  height: 20px;
+  width: 15px;
+  height: 15px;
   margin-inline: .8rem;
+}
+
+.sidenav-open-btn {
+  width: 50px;
+  margin-inline-end: 30px;
 }
 
 .start-btn {
@@ -57,5 +109,5 @@ header {
 }
 .export-btn {
   width: 50px;
-  margin-inline-start: 50px;
+  margin-inline-start: 30px;
 }
