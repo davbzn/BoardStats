@@ -1,23 +1,23 @@
-
-document.getElementById("sidenav-close-btn").onclick = closeNav;
-}
-  menu.closed = true;
-  menu.style.width = "0px";
-  const menu = document.getElementById("player-list-side-menu")
-function closeNav() {
-/* Set the width of the side navigation to 0 */
-
-}
-  menu.closed = false;
-  menu.style.width = "350px";
-  const menu = document.getElementById("player-list-side-menu")
-function openNav() {
-document.getElementById("player-list-side-menu").closed = true;
 // Sidebar Navigation function
+document.getElementById("player-list-side-menu").closed = true;
+function openNav() {
+  const menu = document.getElementById("player-list-side-menu")
+  menu.style.width = "350px";
+  menu.closed = false;
+}
+
+/* Set the width of the side navigation to 0 */
+function closeNav() {
+  const menu = document.getElementById("player-list-side-menu")
+  menu.style.width = "0px";
+  menu.closed = true;
+}
+document.getElementById("sidenav-close-btn").onclick = closeNav;
+
 // Simple list
 var playerList = new Sortable.create(
   document.getElementById("player-list"),
-  { 
+  {
     swapThreshold: 0.50,
     invertSwap: true,
     animation: 150,
