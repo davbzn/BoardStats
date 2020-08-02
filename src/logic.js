@@ -116,11 +116,14 @@ function next() {
 
 function reset() {
   while (logs.length) { logs.pop() }
-  let plist = Array.from( document.getElementById( "player-list" ).children );
+  const plist = Array.from( document.getElementById( "player-list" ).children );
+  while (plist.length) {
+    const playerName = plist.pop().title;
+    deleteElement( playerName );
+  }
   state.player = 0;
   state.timer = 0;
   state.turn = 1;
-  while (state.list.length) { state.list.pop() }
   // reset line chart
   resetLineChart();
   lineChart.update();
