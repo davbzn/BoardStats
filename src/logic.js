@@ -132,13 +132,3 @@ function reset() {
   //boxChart.update();
   return false;
 }
-
-function updateBackgroundColor() {
-  const plist = Array.from( document.getElementById( "player-list" ).children );
-  const names = [...new Set( logs.map( a => a.player ) )];
-  let i;
-  for (i=0; i<names.length; i++) {
-    plist.find( a => a.title == names[i]).child
-  }
-  plist.find( a => a.title == "Player 1").children[0].value
-}
