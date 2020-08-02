@@ -42,24 +42,25 @@ function onColorChange( title ) {
 }
 
 function newElement() {
-  const inputValue = document.getElementById("new-player-name").value;
+  const playerName = document.getElementById("new-player-name").value;
   const playerList = document.getElementById("player-list").children[state.player];
-  if (inputValue === '') {
+  if (playerName === '') {
     alert("You must enter a valid player name!");
-  } else if ( isDuplicatePlayerName( inputValue ) ) {
+  } else if ( isDuplicatePlayerName( playerName ) ) {
     alert("The player name is already in use!");
   } else {
-    var le = addListElement( inputValue );
+    var le = addListElement( playerName );
+    const color = le.childNodes[0].childNodes[0].value;
     // also add element to charts  
-    addLineDataset( inputValue, new Array( state.turn-1 ).fill(0), le.childNodes[0].value );
+    addLineDataset( playerName, new Array( state.turn-1 ), color );
     lineChart.update( 0 );
-    addPieEntry( inputValue, 0, le.childNodes[0].value );
+    addPieEntry( playerName, 0, color );
     pieChart.update( 0 );
-    //addBoxDataset( inputValue, new Array( state.turn-1 ).fill(0), le.childNodes[0].value );
+    //addBoxDataset( playerName, new Array( state.turn-1 ), color );
     //boxChart.update( 0 );
     //
-    le.childNodes[0].onchange = function() { onColorChange( inputValue ) };
-    le.childNodes[2].onclick = function() { deleteElement( inputValue ) };
+    le.childNodes[0].childNodes[0].onchange = function() { onColorChange( playerName ) };
+    le.childNodes[2].onclick = function() { deleteElement( playerName ) };
   }
   document.getElementById("new-player-name").value = "";
   return false;
