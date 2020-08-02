@@ -36,19 +36,19 @@
 
     <!-- Toolbar for the show players, start/stop, next, reset, export data buttons -->
     <section id="toolbar" class="toolbar">
-      <button onclick="openNav()" class="sidenav-open-btn" title="Player List">
+      <button onclick="openCloseNav()" class="toolbar-btn sidenav-open-btn" title="Player List">
         <i id="sidenav-open-icon" class="fa fa-users" aria-hidden="true"></i>
       </button>
-      <button onclick="startStop()" id="start-btn" class="start-btn" title="Start/Pause">
+      <button onclick="startStop()" id="start-btn" class="toolbar-btn start-btn" title="Start/Pause">
         <i id="start-stop-icon" class="fa fa-play" aria-hidden="true"></i>
       </button>
-      <button onclick="next()" class="next-btn" title="Next">
+      <button onclick="next()" id="stop-btn" class="toolbar-btn next-btn" title="Next">
         <i class="fa fa-step-forward" aria-hidden="true"></i>
       </button>
-      <button onclick="reset()" class="reset-btn" title="Reset">
+      <button onclick="reset()" id="reset-btn"  class="toolbar-btn reset-btn" title="Reset">
         <i class="fa fa-refresh" aria-hidden="true"></i>
       </button>
-      <button onclick="exportToCSV()" class="export-btn" title="Export Data to CSV">
+      <button onclick="exportToCSV()" id="export-btn" class="toolbar-btn export-btn" title="Export Data to CSV">
         <i class="fa fa-download" aria-hidden="true"></i>
       </button>
     </section>

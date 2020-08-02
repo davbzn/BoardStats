@@ -1,18 +1,18 @@
 // Sidebar Navigation function
 document.getElementById("player-list-side-menu").closed = true;
-function openNav() {
+function openCloseNav() {
   const menu = document.getElementById("player-list-side-menu")
-  menu.style.width = "350px";
-  menu.closed = false;
+  if ( menu.closed ) {
+    menu.closed = false;
+    menu.style.width = "330px";
+    return;
+  } else {
+    menu.style.width = "0px";
+    menu.closed = true;
+    return;
+  }
 }
-
-/* Set the width of the side navigation to 0 */
-function closeNav() {
-  const menu = document.getElementById("player-list-side-menu")
-  menu.style.width = "0px";
-  menu.closed = true;
-}
-document.getElementById("sidenav-close-btn").onclick = closeNav;
+document.getElementById("sidenav-close-btn").onclick = openCloseNav;
 
 // Simple list
 var playerList = new Sortable.create(

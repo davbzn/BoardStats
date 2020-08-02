@@ -149,11 +149,7 @@ document.addEventListener('keyup', event => {
       next();
       break;
     case "Escape":
-      if ( document.getElementById("player-list-side-menu").closed ) {
-        openNav();
-      } else {
-        closeNav();
-      }
+      openCloseNav();
       break;
     default:
       return;

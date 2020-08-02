@@ -94,20 +94,12 @@ header {
 }
 
 .sidenav-open-btn {
-  width: 50px;
   margin-inline-end: 30px;
 }
-
-.start-btn {
-  width: 50px;
-}
-.next-btn {
-  width: 50px;
-}
-.reset-btn {
-  width: 50px;
-}
 .export-btn {
-  width: 50px;
   margin-inline-start: 30px;
+}
+.toolbar-btn {
+  width: 60px;
+  height: 40px;
 }
