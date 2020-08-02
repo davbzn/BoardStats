@@ -31,8 +31,12 @@ function deleteElement( title ) {
 }
 
 function onColorChange( title ) {
-  let id = Array.from( playerList.el.childNodes ).findIndex( it => it.title == title )
-  let color = playerList.el.childNodes[id].childNodes[0].value;
+  // Get element id and its color
+  const id = Array.from( playerList.el.childNodes ).findIndex( it => it.title == title )
+  const color = playerList.el.childNodes[id].childNodes[0].childNodes[0].value;
+  // change color picker wrapper background color
+  playerList.el.childNodes[id].childNodes[0].style.backgroundColor = color;
+  // update color in plots
   setLineColor( title, color )
   lineChart.update( 0 );
   setPieColor( title, color )

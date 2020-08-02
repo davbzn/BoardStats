@@ -21,13 +21,19 @@ function addCloseButtonToElement( element ) {
   return false;
 }
 
-function addColorPickerToElement( element ) {
-  // create input color picker and append to element
+function addColorPickerToElement( parent ) {
+  // create input color picker
   const input = document.createElement("INPUT");
   input.className = "cpick";
   input.type = "color";
   input.value = "#"+randomColor();
-  element.appendChild(input);
+  // create input color picker wrapper
+  const wrapper = document.createElement("DIV");
+  wrapper.className = "color-picker-wrapper";
+  wrapper.style.backgroundColor = input.value;
+  // append color picker to wrapper and then wrapper to parent element
+  wrapper.appendChild(input);
+  parent.appendChild(wrapper);
   return false;
 }
 
