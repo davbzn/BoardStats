@@ -139,3 +139,24 @@ function reset() {
   //boxChart.update();
   return false;
 }
+
+document.addEventListener('keyup', event => {
+  switch ( event.key ) {
+    case "Enter":
+      startStop();
+      break;
+    case "n":
+      next();
+      break;
+    case "Escape":
+      if ( document.getElementById("player-list-side-menu").closed ) {
+        openNav();
+      } else {
+        closeNav();
+      }
+      break;
+    default:
+      return;
+  }
+  event.preventDefault();
+});
