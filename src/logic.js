@@ -52,6 +52,9 @@ function newElement() {
     alert("You must enter a valid player name!");
   } else if ( isDuplicatePlayerName( playerName ) ) {
     alert("The player name is already in use!");
+  } else if ( playerName.length > 16 ) {
+    alert("Please select a name with 16 characters or fewer.");
+    return false;
   } else {
     var le = addListElement( playerName );
     const color = le.childNodes[0].childNodes[0].value;
