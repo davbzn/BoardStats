@@ -31,8 +31,12 @@ function deleteElement( title ) {
 }
 
 function onColorChange( title ) {
-  let id = Array.from( playerList.el.childNodes ).findIndex( it => it.title == title )
-  let color = playerList.el.childNodes[id].childNodes[0].value;
+  // Get element id and its color
+  const id = Array.from( playerList.el.childNodes ).findIndex( it => it.title == title )
+  const color = playerList.el.childNodes[id].childNodes[0].childNodes[0].value;
+  // change color picker wrapper background color
+  playerList.el.childNodes[id].childNodes[0].style.backgroundColor = color;
+  // update color in plots
   setLineColor( title, color )
   lineChart.update( 0 );
   setPieColor( title, color )
@@ -42,24 +46,28 @@ function onColorChange( title ) {
 }
 
 function newElement() {
-  const inputValue = document.getElementById("new-player-name").value;
+  const playerName = document.getElementById("new-player-name").value;
   const playerList = document.getElementById("player-list").children[state.player];
-  if (inputValue === '') {
+  if (playerName === '') {
     alert("You must enter a valid player name!");
-  } else if ( isDuplicatePlayerName( inputValue ) ) {
+  } else if ( isDuplicatePlayerName( playerName ) ) {
     alert("The player name is already in use!");
+  } else if ( playerName.length > 16 ) {
+    alert("Please select a name with 16 characters or fewer.");
+    return false;
   } else {
-    var le = addListElement( inputValue );
+    var le = addListElement( playerName );
+    const color = le.childNodes[0].childNodes[0].value;
     // also add element to charts  
-    addLineDataset( inputValue, new Array( state.turn-1 ).fill(0), le.childNodes[0].value );
+    addLineDataset( playerName, new Array( state.turn-1 ), color );
     lineChart.update( 0 );
-    addPieEntry( inputValue, 0, le.childNodes[0].value );
+    addPieEntry( playerName, 0, color );
     pieChart.update( 0 );
-    //addBoxDataset( inputValue, new Array( state.turn-1 ).fill(0), le.childNodes[0].value );
+    //addBoxDataset( playerName, new Array( state.turn-1 ), color );
     //boxChart.update( 0 );
     //
-    le.childNodes[0].onchange = function() { onColorChange( inputValue ) };
-    le.childNodes[2].onclick = function() { deleteElement( inputValue ) };
+    le.childNodes[0].childNodes[0].onchange = function() { onColorChange( playerName ) };
+    le.childNodes[2].onclick = function() { deleteElement( playerName ) };
   }
   document.getElementById("new-player-name").value = "";
   return false;
@@ -115,11 +123,14 @@ function next() {
 
 function reset() {
   while (logs.length) { logs.pop() }
-  let plist = Array.from( document.getElementById( "player-list" ).children );
+  const plist = Array.from( document.getElementById( "player-list" ).children );
+  while (plist.length) {
+    const playerName = plist.pop().title;
+    deleteElement( playerName );
+  }
   state.player = 0;
   state.timer = 0;
   state.turn = 1;
-  while (state.list.length) { state.list.pop() }
   // reset line chart
   resetLineChart();
   lineChart.update();
@@ -132,12 +143,19 @@ function reset() {
   return false;
 }
 
-function updateBackgroundColor() {
-  const plist = Array.from( document.getElementById( "player-list" ).children );
-  const names = [...new Set( logs.map( a => a.player ) )];
-  let i;
-  for (i=0; i<names.length; i++) {
-    plist.find( a => a.title == names[i]).child
+document.addEventListener('keyup', event => {
+  switch ( event.key ) {
+    case "Enter":
+      startStop();
+      break;
+    case "n":
+      next();
+      break;
+    case "Escape":
+      openCloseNav();
+      break;
+    default:
+      return;
   }
-  plist.find( a => a.title == "Player 1").children[0].value
-}
+  event.preventDefault();
+});

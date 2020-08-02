@@ -1,16 +1,13 @@
 const logs = [ ];
-const state = { player: 0, timer: 0, turn: 1, list: [] };
+const state = { player: 0, timer: 0, turn: 1 };
 
 function randomColor() {
   return Math.floor(Math.random()*16777215).toString(16);
 }
 
-function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
-
 function logStart( playerID ) {
   logs.push( { player: playerID, turn: state.turn, start: moment() } )
+  return false
 }
 
 function logStop() {
@@ -40,6 +37,8 @@ function nextPlayer() {
     state.player = 0;
     state.turn++;
   }
+  document.getElementById("turn-text").innerHTML = "Turn number: " + state.turn;
+  document.getElementById("player-text").innerHTML = "Current player: " + playerList.el.childNodes[state.player].title;
   return false;
 }
 

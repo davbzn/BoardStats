@@ -14,37 +14,55 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
   <body>
-     <header>
-        <div id="Title" class="title"><h1>Board Stats</h1></div>
-     </header>
+    <header>
+      <div id="Title" class="title"><h1>Board Stats</h1></div>
+    </header>
 
-     <section>
-      <h2>Player List</h2>
-      <input type="text" id="new-player-name" placeholder="New Player Name">
-      <button onclick="newElement()" class="add-btn" title="Add">Add</button>
-     </section>
-
-    <ul id="player-list"></ul>
+    <!-- Side menu containing the players list -->
+    <section id="player-list-side-menu" class="sidenav">
+      <a id="sidenav-close-btn" href="javascript:void(0)" class="sidenav-close-btn">
+        <i id="sidenav-close-icon" class="fa fa-close" aria-hidden="true"></i>
+      </a>
+      <div><h2>Player List</h2></div>
+      <div>
+        <input type="text" id="new-player-name" placeholder="New Player Name">
+        <button onclick="newElement()" class="add-btn" title="Add">
+          <i id="add-btn-icon" class="fa fa-plus" aria-hidden="true"></i>
+        </button>
+      </div>
+      <ul id="player-list"></ul>
+    </section>
     <script src="player-list.js"></script>
 
-    <div>
-      <button onclick="startStop()" class="start-btn" title="Start/Pause">
+    <!-- Toolbar for the show players, start/stop, next, reset, export data buttons -->
+    <section id="toolbar" class="toolbar">
+      <button onclick="openCloseNav()" class="toolbar-btn sidenav-open-btn" title="Player List">
+        <i id="sidenav-open-icon" class="fa fa-users" aria-hidden="true"></i>
+      </button>
+      <button onclick="startStop()" id="start-btn" class="toolbar-btn start-btn" title="Start/Pause">
         <i id="start-stop-icon" class="fa fa-play" aria-hidden="true"></i>
       </button>
-      <button onclick="next()" class="next-btn" title="Next">
+      <button onclick="next()" id="stop-btn" class="toolbar-btn next-btn" title="Next">
         <i class="fa fa-step-forward" aria-hidden="true"></i>
       </button>
-      <button onclick="reset()" class="reset-btn" title="Reset">
+      <button onclick="reset()" id="reset-btn"  class="toolbar-btn reset-btn" title="Reset">
         <i class="fa fa-refresh" aria-hidden="true"></i>
       </button>
-      <button onclick="exportToCSV()" class="export-btn" title="Export Data to CSV">
+      <button onclick="exportToCSV()" id="export-btn" class="toolbar-btn export-btn" title="Export Data to CSV">
         <i class="fa fa-download" aria-hidden="true"></i>
       </button>
-    </div>
+      <h3 id="current-state" class="current-state">
+        <p id="turn-text" class="turn-text">Turn number: </p>
+        <p id="player-text" class="player-text">Current player: </p>
+        <p id="player-text" class="player-text">Time: </p>
+      </h3>
+    </section>
+    
+    <!-- Section containing the charts -->
     <div>
-        <canvas id="line-chart" width="330" height="330"></canvas>
-        <canvas id="pie-chart" width="330" height="330"></canvas>
-        <!--<canvas id="box-chart" width="330" height="300"></canvas>-->
+      <canvas id="pie-chart" width="330" height="330"></canvas>
+      <canvas id="line-chart" width="330" height="330"></canvas>
+      <!--<canvas id="box-chart" width="330" height="300"></canvas>-->
     </div>
     <script src="line.js"></script>
     <script src="pie.js"></script>

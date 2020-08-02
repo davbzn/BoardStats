@@ -2,9 +2,14 @@ var lineChart = new Chart(
   document.getElementById("line-chart").getContext('2d'),
   {
     type: 'line',
+    defaults: {
+      line: {
+        spanGaps: true
+      }
+    },
     data: {
-        datasets: [ ],
-        labels: [],
+      datasets: [ ],
+      labels: [],
     },
     options: {
       /* options */
@@ -70,10 +75,9 @@ function setLineColor( labelStr, color ) {
 function updateLineChartData( overwrite, labelStr, time ) {
   let ds = lineChart.data.datasets.findIndex( it => it.label === labelStr);
   if (overwrite) {
-    let id = lineChart.data.datasets[ds].data.length - 1;
-    lineChart.data.datasets[ds].data[id] += time;
+    lineChart.data.datasets[ds].data[state.turn-1] += time;
   } else {
-    lineChart.data.datasets[ds].data.push( time );
+    lineChart.data.datasets[ds].data[state.turn-1] = time;
   }
   if ( lineChart.data.labels.length < state.turn ) {
     lineChart.data.labels.push( state.turn );

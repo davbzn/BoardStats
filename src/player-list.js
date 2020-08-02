@@ -1,23 +1,28 @@
+// Sidebar Navigation function
+document.getElementById("player-list-side-menu").closed = true;
+function openCloseNav() {
+  const menu = document.getElementById("player-list-side-menu")
+  if ( menu.closed ) {
+    menu.closed = false;
+    menu.style.width = "330px";
+    return;
+  } else {
+    menu.style.width = "0px";
+    menu.closed = true;
+    return;
+  }
+}
+document.getElementById("sidenav-close-btn").onclick = openCloseNav;
+
 // Simple list
 var playerList = new Sortable.create(
-    document.getElementById("player-list"),
-    { 
-      swapThreshold: 0.50,
-      invertSwap: true,
-      animation: 150,
-      onEnd: function (evt) {
-        state.player = 0;
-      }
-    }
+  document.getElementById("player-list"),
+  {
+    swapThreshold: 0.50,
+    invertSwap: true,
+    animation: 150,
+  }
 );
-
-/*
-function removeListElement( button ) {
-    const elem = button.parentElement;
-    elem.parentNode.removeChild( elem );
-    return false;
-}
-*/
 
 function addCloseButtonToElement( element ) {
   // create button
@@ -29,24 +34,22 @@ function addCloseButtonToElement( element ) {
   btn.appendChild( cross );
   // append button
   element.appendChild( btn );
-  /*
-  btn.onclick = removeListElement( btn );
-  btn.onclick = function() {
-    const elem = this.parentElement;
-    elem.parentNode.removeChild( elem )
-    return false;
-  }
-  */
   return false;
 }
 
-function addColorPickerToElement( element ) {
-  // create input color picker and append to element
+function addColorPickerToElement( parent ) {
+  // create input color picker
   const input = document.createElement("INPUT");
   input.className = "cpick";
   input.type = "color";
   input.value = "#"+randomColor();
-  element.appendChild(input);
+  // create input color picker wrapper
+  const wrapper = document.createElement("DIV");
+  wrapper.className = "color-picker-wrapper";
+  wrapper.style.backgroundColor = input.value;
+  // append color picker to wrapper and then wrapper to parent element
+  wrapper.appendChild(input);
+  parent.appendChild(wrapper);
   return false;
 }
 
@@ -64,4 +67,9 @@ function addListElement( text ) {
   // append element to player list
   playerList.el.appendChild(li);
   return li;
+}
+
+playerList.onEnd = function (evt) {
+  state.player = 0;
+  //updatePlayerList()
 }
