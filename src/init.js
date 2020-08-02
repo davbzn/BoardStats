@@ -37,6 +37,8 @@ function nextPlayer() {
     state.player = 0;
     state.turn++;
   }
+  document.getElementById("turn-text").innerHTML = "Turn number: " + state.turn;
+  document.getElementById("player-text").innerHTML = "Current player: " + playerList.el.childNodes[state.player].title;
   return false;
 }
 
