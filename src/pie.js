@@ -31,7 +31,6 @@ function addPieEntry( label, value, color ) {
 
 function removePieEntry( labelStr ) {
   var id = pieChart.data.labels.indexOf( labelStr );
-  console.log( labelStr, id )
   pieChart.data.labels.splice( id, 1);
   pieChart.data.datasets[0].data.splice( id, 1);
   pieChart.data.datasets[0].borderColor.splice( id, 1);
