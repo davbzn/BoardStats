@@ -52,4 +52,5 @@ header {
 }
 .export-btn {
   width: 50px;
+  margin-inline-start: 50px;
 }
