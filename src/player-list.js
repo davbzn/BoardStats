@@ -5,19 +5,8 @@ var playerList = new Sortable.create(
       swapThreshold: 0.50,
       invertSwap: true,
       animation: 150,
-      onEnd: function (evt) {
-        state.player = 0;
-      }
     }
 );
-
-/*
-function removeListElement( button ) {
-    const elem = button.parentElement;
-    elem.parentNode.removeChild( elem );
-    return false;
-}
-*/
 
 function addCloseButtonToElement( element ) {
   // create button
@@ -29,14 +18,6 @@ function addCloseButtonToElement( element ) {
   btn.appendChild( cross );
   // append button
   element.appendChild( btn );
-  /*
-  btn.onclick = removeListElement( btn );
-  btn.onclick = function() {
-    const elem = this.parentElement;
-    elem.parentNode.removeChild( elem )
-    return false;
-  }
-  */
   return false;
 }
 
@@ -64,4 +45,9 @@ function addListElement( text ) {
   // append element to player list
   playerList.el.appendChild(li);
   return li;
+}
+
+playerList.onEnd = function (evt) {
+  state.player = 0;
+  //updatePlayerList()
 }
